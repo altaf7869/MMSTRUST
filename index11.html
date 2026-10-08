@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="gu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>મેવાસ મુસ્લિમ સમાજ - પારદર્શિતા અને અસર</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&family=Noto+Sans+Gujarati:wght@300;400;500;600;700&family=Noto+Serif+Gujarati:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bs-primary: #0d3b66;
+  --bs-primary-rgb: 13, 59, 102;
+  --gold: #d4af37;
+  --ease: cubic-bezier(.22, .8, .3, 1);
+}
+
+/* Global Mobile Responsiveness & Overflow Fixes */
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', 'Noto Sans Gujarati', sans-serif;
+  color: #334155;
+  scroll-behavior: smooth;
+  background: #f8fafc;
+  -webkit-text-size-adjust: 100%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+img, svg, video, canvas {
+  max-width: 100%;
+  height: auto;
+}
+
+h1, h2, h3, h4, .font-serif {
+  font-family: 'Playfair Display', 'Noto Serif Gujarati', serif;
+}
+
+.bg-trust-primary { background: #0d3b66; }
+.text-trust-primary { color: #0d3b66; }
+.border-trust-primary { border-color: #0d3b66 !important; }
+.btn-trust { background: #0d3b66; color: #fff; border: 0; }
+.btn-trust:hover { background: #092c4c; color: #fff; }
+.btn-gold { background: var(--gold); color: #0d3b66; font-weight: 600; border: 0; }
+.btn-gold:hover { background: #c5a028; color: #0d3b66; }
+
+/* Preloader + progress bar + back to top */
+#preloader { position: fixed; inset: 0; background: #0d3b66; z-index: 3000; display: flex; align-items: center; justify-content: center; transition: opacity .6s, visibility .6s; }
+#preloader.done { opacity: 0; visibility: hidden; }
+.loader-ring { width: 56px; height: 56px; border: 4px solid rgba(255,255,255,.2); border-top-color: var(--gold); border-radius: 50%; animation: spin 1s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+#progressBar { position: fixed; top: 0; left: 0; height: 4px; width: 0; background: linear-gradient(90deg, var(--gold), #fff1b8); z-index: 2000; }
+#toTop { position: fixed; right: 20px; bottom: 20px; width: 46px; height: 46px; border-radius: 50%; border: 0; background: var(--gold); color: #0d3b66; box-shadow: 0 6px 18px rgba(0,0,0,.25); opacity: 0; transform: translateY(20px) scale(.8); pointer-events: none; transition: .4s var(--ease); z-index: 1500; }
+#toTop.show { opacity: 1; transform: none; pointer-events: auto; }
+#toTop:hover { transform: translateY(-4px); }
+
+/* Navbar */
+.navbar { transition: padding .35s, box-shadow .35s, background .35s; }
+.navbar.scrolled { padding-top: .4rem !important; padding-bottom: .4rem !important; background: rgba(255,255,255,.92) !important; backdrop-filter: blur(8px); box-shadow: 0 6px 24px rgba(0,0,0,.08) !important; }
+.nav-link { color: #475569; position: relative; }
+.nav-link::after { content: ''; position: absolute; left: 50%; bottom: 2px; width: 0; height: 2px; background: var(--gold); transition: .35s var(--ease); transform: translateX(-50%); }
+.nav-link:hover::after, .nav-link.active::after { width: 70%; }
+.nav-link:hover, .nav-link.active { color: #0d3b66 !important; }
+.brand-icon { animation: heartbeat 2.4s ease-in-out infinite; }
+@keyframes heartbeat { 0%, 100% { transform: scale(1); } 8% { transform: scale(1.12); } 16% { transform: scale(1); } 24% { transform: scale(1.08); } }
+
+/* Hero */
+.hero-section {
+  position: relative;
+  overflow: hidden;
+  min-height: 88vh;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(rgba(13,59,102,.86), rgba(9,44,76,.92)), var(--hero, none) center/cover fixed;
+}
+.blob { position: absolute; border-radius: 50%; background: radial-gradient(circle, rgba(212,175,55,.35), transparent 70%); animation: float 9s ease-in-out infinite; pointer-events: none; }
+.blob.b1 { width: 340px; height: 340px; top: -80px; right: -60px; }
+.blob.b2 { width: 240px; height: 240px; bottom: -60px; left: 8%; animation-delay: -4s; }
+@keyframes float { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(-25px, 30px); } }
+.word-rotator { color: var(--gold); border-right: 3px solid var(--gold); padding-right: 4px; animation: caret .8s step-end infinite; }
+@keyframes caret { 50% { border-color: transparent; } }
+.scroll-hint { position: absolute; bottom: 22px; left: 50%; transform: translateX(-50%); color: #fff; opacity: .7; animation: bounce 1.8s infinite; }
+@keyframes bounce { 0%, 100% { transform: translate(-50%, 0); } 50% { transform: translate(-50%, 10px); } }
+
+/* Hero load-in */
+.hero-in { opacity: 0; transform: translateY(34px); animation: heroIn .9s var(--ease) forwards; }
+@keyframes heroIn { to { opacity: 1; transform: none; } }
+
+/* Scroll reveal */
+.reveal { opacity: 0; transition: opacity .8s var(--ease), transform .8s var(--ease); transition-delay: var(--d, 0s); will-change: transform, opacity; }
+.reveal[data-anim="up"] { transform: translateY(44px); }
+.reveal[data-anim="left"] { transform: translateX(-60px); }
+.reveal[data-anim="right"] { transform: translateX(60px); }
+.reveal[data-anim="zoom"] { transform: scale(.88); }
+.reveal.in { opacity: 1; transform: none; }
+
+/* Cards, stats */
+.lift { transition: transform .35s var(--ease), box-shadow .35s; }
+.lift:hover { transform: translateY(-6px); box-shadow: 0 14px 30px rgba(13,59,102,.15) !important; }
+.float-badge { animation: float 6s ease-in-out infinite; }
+.btn-shine { position: relative; overflow: hidden; }
+.btn-shine::before { content: ''; position: absolute; top: 0; left: -80%; width: 50%; height: 100%; background: linear-gradient(120deg, transparent, rgba(255,255,255,.55), transparent); transform: skewX(-20deg); transition: left .7s; }
+.btn-shine:hover::before { left: 130%; }
+.btn { transition: transform .25s, box-shadow .25s, background .25s; }
+.btn:hover { transform: translateY(-2px); }
+.btn:active { transform: scale(.96); }
+.pulse { animation: pulse 2.2s infinite; }
+@keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(212,175,55,.6); } 70% { box-shadow: 0 0 0 16px rgba(212,175,55,0); } 100% { box-shadow: 0 0 0 0 rgba(212,175,55,0); } }
+.section-title span.bar { display: block; width: 0; height: 3px; background: var(--gold); margin: .6rem auto 0; transition: width 1s var(--ease) .3s; }
+.reveal.in .bar { width: 70px; }
+
+/* Timeline */
+.timeline-item { position: relative; padding-left: 35px; margin-bottom: 30px; }
+.timeline-item::before { content: ''; position: absolute; left: 7px; top: 5px; bottom: -30px; width: 2px; background: var(--gold); transform-origin: top; transform: scaleY(0); transition: transform .9s var(--ease) .3s; }
+.timeline-item.in::before { transform: scaleY(1); }
+.timeline-item:last-child::before { display: none; }
+.timeline-dot { position: absolute; left: 0; top: 0; width: 16px; height: 16px; border-radius: 50%; background: var(--gold); border: 3px solid #e2e8f0; transform: scale(0); transition: transform .5s cubic-bezier(.3, 1.8, .5, 1) .2s; }
+.timeline-item.in .timeline-dot { transform: scale(1); }
+
+/* Table rows & Responsiveness */
+tbody tr.row-in { opacity: 0; transform: translateX(-24px); animation: rowIn .55s var(--ease) forwards; }
+@keyframes rowIn { to { opacity: 1; transform: none; } }
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* QR + modals */
+.qr-container { background: #f8fafc; border: 2px dashed #cbd5e1; border-radius: 1rem; padding: 2rem; text-align: center; }
+.qr-container img { animation: pulse 2.6s infinite; border-radius: 8px; max-width: 100%; height: auto; }
+.modal.fade .modal-dialog { transform: scale(.85) translateY(30px); transition: transform .45s cubic-bezier(.3, 1.4, .5, 1); }
+.modal.show .modal-dialog { transform: none; }
+.modal { padding-right: 0 !important; }
+
+/* Image reveal */
+.img-fx { position: relative; overflow: hidden; border-radius: 1.5rem; }
+.img-fx img { display: block; width: 100%; opacity: 0; transform: translateY(50px) scale(1.2); transition: opacity 1s var(--ease), transform 1.3s var(--ease); }
+.img-fx.in img { opacity: 1; transform: none; }
+.img-fx.in:hover img { transform: scale(1.08); transition-duration: .8s; }
+.img-fx::after { content: ''; position: absolute; inset: 0; background: var(--gold); transform: scaleY(1); transform-origin: top; transition: transform 1s var(--ease); }
+.img-fx.in::after { transform: scaleY(0); transform-origin: bottom; }
+.gal .cap { position: absolute; left: 0; right: 0; bottom: 0; padding: 1rem; color: #fff; font-weight: 600; background: linear-gradient(transparent, rgba(9,44,76,.92)); transform: translateY(100%); transition: transform .45s var(--ease); z-index: 2; }
+.gal:hover .cap { transform: none; }
+@media (hover: none) {
+  .gal .cap { transform: none; }
+}
+
+/* Media Queries for Mobile Fine-Tuning */
+@media (max-width: 768px) {
+  .hero-section {
+    min-height: 75vh;
+    padding-top: 5rem;
+    padding-bottom: 3rem;
+  }
+  
+  h1 {
+    font-size: 2rem !important;
+  }
+  
+  .blob {
+    opacity: 0.5;
+  }
+  
+  .container, .container-fluid {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+</style>
+</head>
+<body>
+<div id="preloader"><div class="loader-ring"></div></div>
+<div id="progressBar"></div>
+<button id="toTop" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
+
+ <!-- <div class="bg-dark text-white py-2 px-3 small text-center">
+  <i class="fa-solid fa-circle-info text-warning me-2"></i><strong>સેટઅપ નોંધ:</strong> બાહ્ય JSON ફાઇલો (<code>donors.json</code>, <code>expenses.json</code>, <code>trust-data.json</code>) વાપરવા લોકલ સર્વર (દા.ત. VS Code Live Server) પર ચલાવો. file:// પર નમૂના ડેટા વપરાશે.
+</div>  -->
+
+<nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm py-3">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center gap-2 fw-bold text-dark fs-4" href="#home">
+      <div class="bg-trust-primary text-white p-2 rounded-circle d-flex align-items-center justify-content-center brand-icon" style="width:40px;height:40px"><i class="fa-solid fa-hands-holding-child"></i></div>
+      <span class="brand-text" data-c="text-trust-primary"></span>
+    </a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"><span class="navbar-toggler-icon"></span></button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto align-items-center gap-lg-3 mb-2 mb-lg-0">
+        <li class="nav-item"><a class="nav-link active fw-medium" href="#home">હોમ</a></li>
+        <li class="nav-item"><a class="nav-link fw-medium" href="#about">અમારા વિશે</a></li>
+        <li class="nav-item"><a class="nav-link fw-medium" href="#gallery">ગેલેરી</a></li>
+        <li class="nav-item"><a class="nav-link fw-medium" href="#future-plans">ભવિષ્યની યોજનાઓ</a></li>
+        <li class="nav-item"><a class="nav-link fw-medium" href="#donors-report">દાતા અહેવાલ</a></li>
+        <li class="nav-item"><a class="nav-link fw-medium" href="#expense-report">ખર્ચ અહેવાલ</a></li>
+        <li class="nav-item"><a class="nav-link fw-medium" href="#contact">સંપર્ક</a></li>
+        <li class="nav-item mt-3 mt-lg-0"><button class="btn btn-gold btn-shine pulse rounded-pill px-4 py-2 fw-semibold" data-bs-toggle="modal" data-bs-target="#donateModal"><i class="fa-solid fa-heart me-2 text-danger"></i>દાન કરો અને QR</button></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<header id="home" class="hero-section text-white">
+  <div class="blob b1"></div><div class="blob b2"></div>
+  <div class="container position-relative">
+    <div class="col-lg-8 text-center text-lg-start mx-auto mx-lg-0">
+      <span id="heroBadge" class="badge bg-warning text-dark px-3 py-2 rounded-pill mb-3 fw-semibold text-uppercase hero-in" style="animation-delay:.2s">નોંધાયેલ ચેરિટેબલ ટ્રસ્ટ</span>
+      <h1 class="display-3 fw-bold mb-3 hero-in" style="animation-delay:.4s" id="heroTitle">સંપૂર્ણ નાણાકીય પારદર્શિતા અને પાયાના સ્તરે સામાજિક અસર</h1>
+      <h4 class="mb-4 hero-in" style="animation-delay:.6s">સાથે મળીને આપીએ <span class="word-rotator" id="rotator">આશા</span></h4>
+      <p class="lead mb-5 opacity-75 hero-in" style="animation-delay:.8s" id="heroSubtitle">ચકાસાયેલ વર્ષ-વાર દાતા રેકોર્ડ, પ્રોજેક્ટ ખર્ચ, આગામી કલ્યાણ કાર્યો જુઓ અને QR કોડ દ્વારા સુરક્ષિત રીતે અમારા કાર્યને ટેકો આપો.</p>
+      <div class="d-flex flex-column flex-sm-row justify-content-center justify-content-lg-start gap-3 hero-in" style="animation-delay:1s">
+        <button class="btn btn-gold btn-shine btn-lg rounded-pill px-5 py-3 fw-semibold" data-bs-toggle="modal" data-bs-target="#donateModal">QR કોડ દ્વારા દાન કરો</button>
+        <a href="#donors-report" class="btn btn-outline-light btn-lg rounded-pill px-5 py-3 fw-semibold">વર્ષ-વાર અહેવાલ જુઓ</a>
+      </div>
+    </div>
+  </div>
+  <a href="#about" class="scroll-hint text-white fs-4"><i class="fa-solid fa-chevron-down"></i></a>
+</header>
+
+<section id="about" class="py-5 bg-white">
+  <div class="container py-lg-4">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6 reveal" data-anim="left">
+        <div class="position-relative">
+          <div class="img-fx shadow-lg"><img id="aboutImg" src="images/about.jpg" alt="About"></div>
+          <div class="position-absolute bottom-0 end-0 bg-white p-4 rounded-4 shadow m-3 d-none d-sm-block border-start border-5 border-warning float-badge">
+            <h3 class="fw-bold text-trust-primary mb-1"><span data-count="100">0</span>%</h3>
+            <p id="aboutBadge" class="text-muted mb-0 small">જવાબદાર અને ઓડિટ થયેલ ફંડ</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 reveal" data-anim="right">
+        <span id="aboutLabel" class="text-trust-primary fw-semibold text-uppercase small">અમારી પ્રતિબદ્ધતા</span>
+        <h2 id="aboutTitle" class="display-5 fw-bold mb-4 mt-1">સંપૂર્ણ પારદર્શિતા દ્વારા વિશ્વાસનું નિર્માણ</h2>
+        <p id="aboutText" class="text-muted mb-4">મેવાસ મુસ્લિમ સમાજ સંપૂર્ણ સ્પષ્ટતા સાથે કામ કરે છે. દરેક દાન — કોર્પસ, ઝકાત, CSR કે સામાન્ય સહાય — ગામ-સ્તરના પ્રોજેક્ટ ફાળવણી સાથે નોંધાય છે અને જાહેરમાં પ્રકાશિત થાય છે.</p>
+        <div class="row g-4">
+          <div class="col-md-6 reveal" data-anim="up" style="--d:.2s"><div class="p-3 bg-light rounded-3 h-100 border-start border-3 border-trust-primary lift">
+            <div class="text-trust-primary fs-4 mb-2"><i class="fa-solid fa-file-invoice-dollar"></i></div><h5 class="fw-bold">વર્ષ-વાર ખાતાવહી</h5><p class="small text-muted mb-0">નાણાકીય વર્ષ મુજબ દાન અને ખર્ચ તરત ફિલ્ટર કરો.</p></div></div>
+          <div class="col-md-6 reveal" data-anim="up" style="--d:.4s"><div class="p-3 bg-light rounded-3 h-100 border-start border-3 border-warning lift">
+            <div class="text-trust-primary fs-4 mb-2"><i class="fa-solid fa-download"></i></div><h5 class="fw-bold">ડાઉનલોડ કરી શકાય તેવા PDF</h5><p class="small text-muted mb-0">ઓડિટ અને અંગત રેકોર્ડ માટે ફોર્મેટ કરેલા અહેવાલ બનાવો.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="gallery" class="py-5 bg-light"><div class="container py-lg-4">
+    <div class="text-center mb-5 reveal section-title" data-anim="up"><span class="text-trust-primary fw-semibold text-uppercase small">ચિત્રોમાં અમારું કાર્ય</span><h2 class="display-5 fw-bold mt-1">ગેલેરી</h2><span class="bar"></span></div>
+    <div class="row g-3 g-md-4" id="galleryGrid"></div></div></section>
+
+<section id="future-plans" class="py-5 bg-light">
+  <div class="container py-lg-4">
+    <div class="text-center mx-auto mb-5 reveal section-title" data-anim="up" style="max-width:700px">
+      <span class="text-trust-primary fw-semibold text-uppercase small">રોડમેપ અને દૃષ્ટિ</span>
+      <h2 class="display-5 fw-bold mt-1">અમારી ભવિષ્યની યોજનાઓ અને આગામી પ્રોજેક્ટ</h2>
+      <span class="bar"></span>
+      <p class="text-muted mt-3">આગામી નાણાકીય વર્ષો માટે આયોજિત ગ્રામ્ય માળખાકીય અને કલ્યાણ કાર્યો.</p>
+    </div>
+    <div class="row justify-content-center"><div class="col-lg-8">
+      <div class="bg-white p-4 p-md-5 rounded-4 shadow-sm reveal" data-anim="zoom" id="timelineContainer"><div class="text-center py-4 text-muted">ભવિષ્યની યોજનાઓ લોડ થઈ રહી છે...</div></div>
+    </div></div>
+  </div>
+</section>
+
+<section id="donors-report" class="py-5 bg-white">
+  <div class="container py-lg-4">
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mb-4 gap-3 reveal" data-anim="up">
+      <div><span class="text-trust-primary fw-semibold text-uppercase small">પારદર્શિતા ખાતાવહી</span><h2 class="display-5 fw-bold mt-1 mb-0">દાતા અહેવાલ</h2></div>
+      <div class="d-flex flex-wrap gap-3 align-items-center justify-content-end">
+        <div class="d-flex align-items-center gap-2"><label class="small fw-bold text-muted text-nowrap">નાણાકીય વર્ષ:</label>
+          <select id="donorYearFilter" class="form-select rounded-pill px-3" onchange="filterDonors()"></select></div>
+        <input type="text" id="donorSearch" class="form-control rounded-pill px-3" placeholder="દાતા અથવા ગામ શોધો..." onkeyup="filterDonors()" style="max-width:220px">
+        <button class="btn btn-trust btn-shine rounded-pill px-4 fw-semibold text-nowrap" onclick="downloadDonorsPDF()"><i class="fa-solid fa-file-pdf me-2"></i>PDF ડાઉનલોડ</button>
+      </div>
+    </div>
+    <div class="row g-4 mb-4">
+      <div class="col-md-6 reveal" data-anim="left"><div class="p-4 bg-light rounded-4 shadow-sm border-start border-4 border-trust-primary lift"><span class="text-muted small fw-semibold">કુલ દાતાઓ (ફિલ્ટર મુજબ)</span><h3 class="fw-bold text-dark mt-1 mb-0" id="totalDonorsCount">0</h3></div></div>
+      <div class="col-md-6 reveal" data-anim="right"><div class="p-4 bg-light rounded-4 shadow-sm border-start border-4 border-warning lift"><span class="text-muted small fw-semibold">કુલ દાન રકમ (ફિલ્ટર મુજબ)</span><h3 class="fw-bold text-trust-primary mt-1 mb-0" id="totalDonorsAmount">₹0</h3></div></div>
+    </div>
+    <div class="card border-0 shadow-sm rounded-4 overflow-hidden mb-3 reveal" data-anim="up">
+      <div class="table-responsive">
+        <table class="table table-hover align-middle mb-0">
+          <thead class="table-dark text-uppercase small"><tr><th class="py-3 ps-4">ક્રમ</th><th>દાતાનું નામ</th><th>દાનનો પ્રકાર</th><th>ગામ / શહેર</th><th>રકમ (₹)</th><th>તારીખ</th><th class="pe-4">રસીદ નં.</th></tr></thead>
+          <tbody id="donorsTableBody"><tr><td colspan="7" class="text-center py-4 text-muted">દાતા રેકોર્ડ લોડ થઈ રહ્યા છે...</td></tr></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="d-flex justify-content-between px-2"><span class="text-muted small" id="donorCountInfo">રેકોર્ડ બતાવી રહ્યા છીએ</span><span class="text-trust-primary small fw-semibold">ઓડિટ થયેલ બેંક સ્ટેટમેન્ટ સાથે ચકાસાયેલ</span></div>
+  </div>
+
+  <div id="donorsPagination" class="d-flex flex-column flex-sm-row justify-content-between align-items-center px-2 my-3 gap-3"></div>
+</section>
+
+<section id="expense-report" class="py-5 bg-light">
+  <div class="container py-lg-4">
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mb-4 gap-3 reveal" data-anim="up">
+      <div><span class="text-trust-primary fw-semibold text-uppercase small">ફંડનો ઉપયોગ</span><h2 class="display-5 fw-bold mt-1 mb-0">ખર્ચ અહેવાલ</h2></div>
+      <div class="d-flex flex-wrap gap-3 align-items-center justify-content-end">
+        <div class="d-flex align-items-center gap-2"><label class="small fw-bold text-muted text-nowrap">નાણાકીય વર્ષ:</label>
+          <select id="expenseYearFilter" class="form-select rounded-pill px-3" onchange="filterExpenses()"></select></div>
+        <button class="btn btn-dark btn-shine rounded-pill px-4 fw-semibold text-nowrap" onclick="downloadExpensePDF()"><i class="fa-solid fa-file-pdf me-2"></i>PDF ડાઉનલોડ</button>
+      </div>
+    </div>
+    <div class="row g-4 mb-4">
+      <div class="col-md-4 reveal" data-anim="up"><div class="p-4 bg-white rounded-4 shadow-sm border-start border-4 border-trust-primary h-100 lift"><span class="text-muted small fw-semibold">કુલ એકત્ર ફંડ</span><h3 class="fw-bold text-dark mt-1 mb-0" id="totalCollected">₹0</h3></div></div>
+      <div class="col-md-4 reveal" data-anim="up" style="--d:.15s"><div class="p-4 bg-white rounded-4 shadow-sm border-start border-4 border-warning h-100 lift"><span class="text-muted small fw-semibold">કુલ થયેલ ખર્ચ</span><h3 class="fw-bold text-dark mt-1 mb-0" id="totalSpent">₹0</h3></div></div>
+      <div class="col-md-4 reveal" data-anim="up" style="--d:.3s"><div class="p-4 bg-white rounded-4 shadow-sm border-start border-4 border-success h-100 lift"><span class="text-muted small fw-semibold">ચોખ્ખી બાકી રકમ</span><h3 class="fw-bold text-success mt-1 mb-0" id="reserveBalance">₹0</h3></div></div>
+    </div>
+    <div class="card border-0 shadow-sm rounded-4 overflow-hidden reveal" data-anim="up">
+      <div class="table-responsive">
+        <table class="table table-hover align-middle mb-0">
+          <thead class="table-dark text-uppercase small"><tr><th class="py-3 ps-4">ક્રમ</th><th>વર્ણન</th><th>શ્રેણી</th><th>રકમ (₹)</th><th>તારીખ</th><th class="pe-4">વાઉચર નં.</th></tr></thead>
+          <tbody id="expenseTableBody"><tr><td colspan="6" class="text-center py-4 text-muted">ખર્ચ રેકોર્ડ લોડ થઈ રહ્યા છે...</td></tr></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="py-5 bg-white">
+  <div class="container py-lg-4"><div class="row g-5">
+    <div class="col-lg-5 reveal" data-anim="left">
+      <span class="text-trust-primary fw-semibold text-uppercase small">સંપર્ક કરો</span>
+      <h2 class="display-5 fw-bold mt-1 mb-3">અમે તમારી વાત સાંભળવા ઇચ્છીએ છીએ</h2>
+      <p class="text-muted mb-4">ઓડિટ, ગામ કલ્યાણ અભિયાન કે સહયોગ વિશે પ્રશ્નો છે? અમારી ટ્રસ્ટી ઓફિસનો સંપર્ક કરો.</p>
+      <div class="d-flex mb-4"><div class="bg-trust-primary text-white p-3 rounded-3 me-3 fs-5"><i class="fa-solid fa-location-dot"></i></div><div><h5 class="fw-bold mb-1">ટ્રસ્ટનું મુખ્ય કાર્યાલય</h5><p class="text-muted mb-0" id="trustAddress">તમારા ટ્રસ્ટનું સરનામું અહીં લખો</p></div></div>
+      <div class="d-flex mb-4"><div class="bg-trust-primary text-white p-3 rounded-3 me-3 fs-5"><i class="fa-solid fa-envelope"></i></div><div><h5 class="fw-bold mb-1">સત્તાવાર ઇમેઇલ</h5><p class="text-muted mb-0" id="trustEmail">info@yourdomain.com</p></div></div>
+      <div class="d-flex"><div class="bg-trust-primary text-white p-3 rounded-3 me-3 fs-5"><i class="fa-solid fa-phone"></i></div><div><h5 class="fw-bold mb-1">હેલ્પલાઇન</h5><p class="text-muted mb-0" id="trustPhone">+1 (800) 555-HOPE</p></div></div>
+    </div>
+    <div class="col-lg-7 reveal" data-anim="right">
+      <div class="card border-0 shadow-sm p-4 p-md-5 rounded-4 bg-light">
+        <h3 class="fw-bold mb-4">અમને સંદેશ મોકલો</h3>
+        <form onsubmit="event.preventDefault();showMessageBox('આભાર! તમારો સંદેશ ટ્રસ્ટી મંડળને મોકલાઈ ગયો છે.');this.reset()">
+          <div class="row g-3">
+            <div class="col-md-6"><label class="form-label small fw-semibold">તમારું નામ</label><input type="text" class="form-control rounded-pill px-3 py-2" placeholder="રમેશ પટેલ" required></div>
+            <div class="col-md-6"><label class="form-label small fw-semibold">તમારો ઇમેઇલ</label><input type="email" class="form-control rounded-pill px-3 py-2" placeholder="john@example.com" required></div>
+            <div class="col-12"><label class="form-label small fw-semibold">વિષય</label><input type="text" class="form-control rounded-pill px-3 py-2" placeholder="ઓડિટ પૂછપરછ / ભાગીદારી" required></div>
+            <div class="col-12"><label class="form-label small fw-semibold">સંદેશ</label><textarea class="form-control rounded-4 p-3" rows="4" placeholder="તમારો સંદેશ લખો..." required></textarea></div>
+            <div class="col-12 mt-4"><button type="submit" class="btn btn-trust btn-shine rounded-pill px-5 py-3 fw-semibold w-100">સંદેશ મોકલો</button></div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div></div>
+</section>
+
+<footer class="bg-dark text-white pt-5 pb-4">
+  <div class="container">
+    <div class="row g-5 mb-5">
+      <div class="col-lg-4 reveal" data-anim="up"><div class="fw-bold fs-4 mb-3 brand-text" data-c="text-warning"></div><p id="footAbout" class="opacity-75 small">પારદર્શિતા, સમુદાય સશક્તિકરણ અને ચકાસાયેલ સામાજિક કલ્યાણ માટે સમર્પિત નોંધાયેલ ચેરિટેબલ ટ્રસ્ટ.</p></div>
+      <div class="col-lg-2 col-md-4 reveal" data-anim="up" style="--d:.15s"><h5 class="fw-bold mb-3">ઝડપી લિંક્સ</h5><ul class="list-unstyled d-flex flex-column gap-2 small">
+        <li><a href="#home" class="text-light opacity-75 text-decoration-none">હોમ</a></li><li><a href="#about" class="text-light opacity-75 text-decoration-none">અમારા વિશે</a></li>
+        <li class="nav-item"><a class="nav-link fw-medium" href="#gallery">ગેલેરી</a></li><li><a href="#future-plans" class="text-light opacity-75 text-decoration-none">ભવિષ્યની યોજનાઓ</a></li><li><a href="#donors-report" class="text-light opacity-75 text-decoration-none">દાતા અહેવાલ</a></li><li><a href="#expense-report" class="text-light opacity-75 text-decoration-none">ખર્ચ અહેવાલ</a></li></ul></div>
+      <div class="col-lg-3 col-md-4 reveal" data-anim="up" style="--d:.3s"><h5 class="fw-bold mb-3">કરમુક્તિ</h5><p id="taxNote" class="opacity-75 small">મેવાસ મુસ્લિમ સમાજને આપેલા દાન લાગુ સ્થાનિક ટ્રસ્ટ નિયમો હેઠળ કરમુક્ત છે.</p></div>
+      <div class="col-lg-3 col-md-4 reveal" data-anim="up" style="--d:.45s"><h5 class="fw-bold mb-3">સુરક્ષિત દાન</h5><p class="opacity-75 small mb-2">QR કોડ સ્કેન કરો અથવા સીધું બેંક ટ્રાન્સફર કરો.</p><button class="btn btn-outline-light btn-sm rounded-pill px-3 fw-semibold" data-bs-toggle="modal" data-bs-target="#donateModal">QR કોડ ખોલો</button></div>
+    </div>
+    <hr class="border-secondary opacity-25">
+    <div id="copyright" class="small opacity-75 text-center">&copy; 2026 મેવાસ મુસ્લિમ સમાજ. સર્વ હકો સ્વાધીન.</div>
+  </div>
+</footer>
+
+<div class="modal fade" id="donateModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg"><div class="modal-content rounded-4 border-0 shadow-lg">
+    <div class="modal-header border-0 pb-0"><h5 class="modal-title fw-bold">મેવાસ મુસ્લિમ સમાજને સહયોગ આપો અને QR કોડ ચુકવણી</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+    <div class="modal-body p-4"><div class="row g-4 align-items-center">
+      <div class="col-md-5"><div class="qr-container">
+        <div class="bg-white p-3 rounded-3 shadow-sm d-inline-block mb-3">
+          <img id="qrImg" src="images/qr.png" alt="QR Code" width="160" height="160" class="rounded-2">
+        </div>
+        <p class="small fw-semibold text-dark mb-1">UPI / બેંકિંગ એપથી સ્કેન કરો</p>
+        <p class="text-muted mb-2" style="font-size:.75rem">UPI ID: <span id="modalUpiId">your-upi-id@bank</span></p>
+        <button class="btn btn-outline-dark btn-sm rounded-pill px-3" onclick="copyUpiId()"><i class="fa-solid fa-copy me-1"></i>UPI ID કૉપિ કરો</button>
+      </div></div>
+      <div class="col-md-7">
+        <h6 class="fw-bold mb-3 text-trust-primary">સીધા બેંક ટ્રાન્સફરની વિગતો</h6>
+        <ul class="list-unstyled small text-muted mb-4 lh-lg" id="bankList"></ul>
+        <hr class="my-3">
+        <form onsubmit="event.preventDefault();bootstrap.Modal.getInstance(document.getElementById('donateModal')).hide();setTimeout(()=>showMessageBox('આભાર! અમારી એકાઉન્ટ ટીમ ચકાસીને તમારું નામ દાતા અહેવાલમાં ઉમેરશે.'),400);this.reset()">
+          <div class="input-group mb-2"><input type="text" class="form-control" placeholder="પૂરું નામ" required><input type="number" class="form-control" placeholder="રકમ (₹)" required style="max-width:120px"></div>
+          <input type="text" class="form-control form-control-sm mb-2" placeholder="ગામ / શહેરનું નામ" required>
+          <button type="submit" class="btn btn-gold btn-shine rounded-pill w-100 py-2 fw-semibold">મેં ટ્રાન્સફર / QR ચુકવણી પૂર્ણ કરી છે</button>
+        </form>
+      </div>
+    </div></div>
+  </div></div>
+</div>
+
+<div class="modal fade" id="msgModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-sm"><div class="modal-content rounded-4 border-0 shadow-lg text-center p-4">
+    <div class="text-trust-primary fs-1 mb-2"><i class="fa-solid fa-circle-check"></i></div>
+    <h5 class="fw-bold mb-2">સૂચના</h5><p id="msgModalText" class="text-muted small mb-3"></p>
+    <button type="button" class="btn btn-trust rounded-pill btn-sm w-100" data-bs-dismiss="modal">બરાબર</button>
+  </div></div>
+</div>
+
+<script>
+/* ---------- UI helpers ---------- */
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function showMessageBox(t){ $('msgModalText').innerText = t; bootstrap.Modal.getOrCreateInstance($('msgModal')).show(); }
+function copyUpiId(){
+  const t = $('modalUpiId').innerText;
+  (navigator.clipboard ? navigator.clipboard.writeText(t) : Promise.reject())
+    .catch(() => { const i = document.createElement('input'); i.value = t; document.body.appendChild(i); i.select(); document.execCommand('copy'); i.remove(); })
+    .then(() => showMessageBox('UPI ID કૉપિ થઈ ગઈ!'));
+}
+
+/* ---------- Scroll reveal ---------- */
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if (!e.isIntersecting) return;
+  e.target.classList.add('in');
+  e.target.querySelectorAll('[data-count]').forEach(countUp);
+  if (e.target.matches('[data-count]')) countUp(e.target);
+  io.unobserve(e.target);
+}), { threshold: .15 });
+const observeAll = (root = document) => root.querySelectorAll('.reveal:not(.in),.timeline-item:not(.in),.img-fx:not(.in)').forEach(el => io.observe(el));
+
+/* ---------- Number count-up ---------- */
+function animateValue(el, to, prefix = '', ms = 900) {
+  const from = Number(el.dataset.v || 0), t0 = performance.now();
+  el.dataset.v = to;
+  (function step(now) {
+    const p = Math.min((now - t0) / ms, 1), e = 1 - Math.pow(1 - p, 3);
+    el.textContent = prefix + Math.round(from + (to - from) * e).toLocaleString('en-IN');
+    if (p < 1) requestAnimationFrame(step);
+  })(t0);
+}
+function countUp(el) { if (!el.dataset.done) { el.dataset.done = 1; animateValue(el, +el.dataset.count); } }
+
+/* ---------- Text transitions: rotating typed words ---------- */
+function startRotator() {
+  const seg = s => window.Intl && Intl.Segmenter ? [...new Intl.Segmenter('gu',{granularity:'grapheme'}).segment(s)].map(x => x.segment) : [...s];
+  const words = (window.heroWords || ['આશા']).map(seg), el = $('rotator');
+  let w = 0, c = 0, del = false;
+  (function tick() {
+    const word = words[w];
+    el.textContent = word.slice(0, c).join('');
+    if (!del && c === word.length) { del = true; return setTimeout(tick, 1400); }
+    if (del && c === 0) { del = false; w = (w + 1) % words.length; }
+    c += del ? -1 : 1;
+    setTimeout(tick, del ? 45 : 90);
+  })();
+}
+
+/* ---------- Scroll effects ---------- */
+function onScroll() {
+  const y = scrollY, h = document.documentElement.scrollHeight - innerHeight;
+  $('progressBar').style.width = (h > 0 ? y / h * 100 : 0) + '%';
+  document.querySelector('.navbar').classList.toggle('scrolled', y > 60);
+  $('toTop').classList.toggle('show', y > 500);
+}
+addEventListener('scroll', onScroll, { passive: true });
+$('toTop').onclick = () => scrollTo({ top: 0, behavior: 'smooth' });
+
+const links = [...document.querySelectorAll('.navbar .nav-link')];
+const spy = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting) links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id));
+}), { rootMargin: '-45% 0px -50% 0px' });
+document.querySelectorAll('section[id],header[id]').forEach(s => spy.observe(s));
+document.querySelectorAll('.navbar-collapse .nav-link').forEach(a => a.addEventListener('click', () => {
+  const c = $('navbarNav'); if (c.classList.contains('show')) bootstrap.Collapse.getOrCreateInstance(c).hide();
+}));
+
+/* ---------- Data ---------- */
+let donorsData = [], expensesData = [], trustInfo = {};
+const TY = {Corpus:'કોર્પસ',General:'સામાન્ય',CSR:'CSR',Zakat:'ઝકાત',Medical:'તબીબી',Education:'શિક્ષણ',Infrastructure:'માળખાકીય સુવિધા',Administrative:'વહીવટી'};
+const ty = v => TY[v] || v;
+
+async function loadExternalData() {
+  try {
+    const r = await Promise.all(['donors.json', 'expenses.json', 'trust-data.json'].map(f => fetch(f)));
+    if (!r.every(x => x.ok)) throw new Error('JSON fetch failed');
+    [donorsData, expensesData, trustInfo] = await Promise.all(r.map(x => x.json()));
+  } catch (e) {
+    console.error(e);
+    document.body.insertAdjacentHTML('afterbegin', '<div class="alert alert-danger m-0 rounded-0 text-center">JSON ફાઇલો લોડ થઈ નથી. Live Server / વેબ સર્વર પર ચલાવો અને donors.json, expenses.json, trust-data.json એ જ ફોલ્ડરમાં રાખો.</div>');
+    return;
+  }
+  applyTrustData(trustInfo);
+  renderFuturePlans(trustInfo.futurePlans || []);
+  filterDonors(); filterExpenses();
+}
+
+function applyTrustData(t) {
+  const set = (id, v) => { const e = $(id); if (e && v) e.textContent = v; };
+  if (t.title || t.name) document.title = t.title || t.name;
+  const b = t.brand || {};
+  document.querySelectorAll('.brand-text').forEach(el => el.innerHTML = `${esc(b.first)} <span class="${el.dataset.c}">${esc(b.second)}</span>`);
+  set('heroBadge', t.badge); set('heroTitle', t.heroTitle); set('heroSubtitle', t.heroSubtitle);
+  const a = t.about || {};
+  set('aboutLabel', a.label); set('aboutTitle', a.title); set('aboutText', a.text); set('aboutBadge', a.badgeText);
+  set('trustAddress', t.address); set('trustEmail', t.email); set('trustPhone', t.phone);
+  set('modalUpiId', t.upiId); set('footAbout', t.footerAbout); set('taxNote', t.taxNote); set('copyright', t.copyright);
+  const im = t.images || {};
+  if (im.hero) document.querySelector('.hero-section').style.setProperty('--hero', `url('${im.hero}')`);
+  if (im.about) $('aboutImg').src = im.about;
+  if (im.qr) $('qrImg').src = im.qr;
+  $('bankList').innerHTML = (t.bank || []).map(r => `<li><strong>${esc(r.label)}:</strong> ${esc(r.value)}</li>`).join('');
+  window.heroWords = t.heroWords;
+  const opts = '<option value="all">બધા વર્ષ</option>' + (t.years || []).map(y => `<option value="${esc(y)}"${y === t.defaultYear ? ' selected' : ''}>${esc(y)}</option>`).join('');
+  $('donorYearFilter').innerHTML = opts; $('expenseYearFilter').innerHTML = opts;
+  const g = t.gallery || [];
+  $('gallery').hidden = !g.length;
+  $('galleryGrid').innerHTML = g.map((x, i) => `<div class="col-6 col-md-4 reveal" data-anim="up" style="--d:${i * .12}s"><div class="img-fx gal shadow-sm"><img src="${esc(x.image)}" alt="${esc(x.caption)}" loading="lazy"><div class="cap">${esc(x.caption)}</div></div></div>`).join('');
+  observeAll($('galleryGrid'));
+}
+
+function renderFuturePlans(plans) {
+  const box = $('timelineContainer');
+  if (!plans.length) { box.innerHTML = '<p class="text-center text-muted">કોઈ ભવિષ્યની યોજના ઉપલબ્ધ નથી.</p>'; return; }
+  box.innerHTML = plans.map((p, i) => `
+    <div class="timeline-item reveal ${i === plans.length - 1 ? 'mb-0' : ''}" data-anim="up" style="--d:${i * .15}s">
+      <div class="timeline-dot"></div>
+      <span class="badge ${i % 2 ? 'bg-warning text-dark' : 'bg-trust-primary'} mb-1">${esc(p.period)}</span>
+      <h4 class="fw-bold">${esc(p.title)}</h4><p class="text-muted small mb-0">${esc(p.desc)}</p>
+    </div>`).join('');
+  observeAll(box);
+}
+
+/* ---------- Donors ---------- */
+function filterDonors() {
+  const y = $('donorYearFilter').value, q = $('donorSearch').value.toLowerCase();
+  const list = donorsData.filter(d => (y === 'all' || d.year === y) && [d.name, d.village, d.type].some(v => String(v).toLowerCase().includes(q)));
+  renderDonorsTable(list);
+  animateValue($('totalDonorsCount'), list.length);
+  animateValue($('totalDonorsAmount'), list.reduce((a, d) => a + d.amount, 0), '₹');
+}
+function renderDonorsTable(data) {
+  $('donorCountInfo').innerText = `${data.length} દાતા રેકોર્ડ બતાવ્યા`;
+  if (!data.length) { $('donorsTableBody').innerHTML = '<tr><td colspan="7" class="text-center py-4 text-muted swap">આ પસંદગી માટે કોઈ દાતા રેકોર્ડ મળ્યો નથી.</td></tr>'; return; }
+  const badge = {Corpus:'bg-trust-primary text-white',CSR:'bg-warning text-dark',Zakat:'bg-success text-white',Medical:'bg-info text-dark',Education:'bg-info text-dark'};
+  $('donorsTableBody').innerHTML = data.map((d, i) => `
+    <tr class="row-in" style="animation-delay:${Math.min(i * .06, .8)}s">
+      <td class="ps-4 text-muted small">${i + 1}</td><td class="fw-semibold text-dark">${esc(d.name)}</td>
+      <td><span class="badge ${badge[d.type] || 'bg-light text-dark border'}">${esc(ty(d.type))}</span></td>
+      <td><i class="fa-solid fa-location-dot text-muted me-1 small"></i>${esc(d.village)}</td>
+      <td class="text-trust-primary fw-bold">₹${d.amount.toLocaleString('en-IN')}</td><td class="text-muted small">${esc(d.date)}</td><td class="pe-4 text-muted small">${esc(d.receiptNo || 'N/A')}</td>
+    </tr>`).join('');
+}
+
+/* ---------- Expenses ---------- */
+function filterExpenses() {
+  const y = $('expenseYearFilter').value;
+  const list = expensesData.filter(e => y === 'all' || e.year === y);
+  const coll = donorsData.filter(d => y === 'all' || d.year === y).reduce((a, d) => a + d.amount, 0);
+  const spent = list.reduce((a, e) => a + e.amount, 0);
+  if (!list.length) $('expenseTableBody').innerHTML = '<tr><td colspan="6" class="text-center py-4 text-muted swap">આ નાણાકીય વર્ષ માટે કોઈ ખર્ચ રેકોર્ડ મળ્યો નથી.</td></tr>';
+  else $('expenseTableBody').innerHTML = list.map((e, i) => `
+    <tr class="row-in" style="animation-delay:${Math.min(i * .06, .8)}s">
+      <td class="ps-4 text-muted small">${i + 1}</td><td class="fw-semibold text-dark">${esc(e.description)}</td>
+      <td><span class="badge bg-light text-dark border">${esc(ty(e.category))}</span></td>
+      <td class="text-danger fw-bold">₹${e.amount.toLocaleString('en-IN')}</td><td class="text-muted small">${esc(e.date)}</td><td class="pe-4 text-muted small">${esc(e.voucherNo || 'N/A')}</td>
+    </tr>`).join('');
+  animateValue($('totalCollected'), coll, '₹'); animateValue($('totalSpent'), spent, '₹'); animateValue($('reserveBalance'), coll - spent, '₹');
+}
+
+/* ---------- PDF (print to PDF, supports Gujarati) ---------- */
+function makePDF(title, year, head, body) {
+  const w = window.open('', '_blank');
+  if (!w) { showMessageBox('પોપ-અપ બ્લૉક થયું છે. કૃપા કરી મંજૂરી આપો.'); return; }
+  const rows = body.map(r => '<tr>' + r.map(c => `<td>${esc(c)}</td>`).join('') + '</tr>').join('');
+  w.document.write(`<!DOCTYPE html><html lang="gu"><head><meta charset="UTF-8"><title>${esc(title)}</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Gujarati:wght@400;700&display=swap" rel="stylesheet">
+  <style>body{font-family:'Noto Sans Gujarati',sans-serif;padding:24px;color:#222}h2{margin:0 0 6px;color:#0d3b66}table{width:100%;border-collapse:collapse;margin-top:16px;font-size:13px}th{background:#0d3b66;color:#fff}th,td{border:1px solid #999;padding:6px 8px;text-align:left}</style></head>
+  <body><h2>${esc(trustInfo.name || '')}</h2><div>${esc(title)} (નાણાકીય વર્ષ: ${year === 'all' ? 'બધા વર્ષ' : esc(year)})</div>
+  <div>તારીખ: ${new Date().toLocaleDateString('en-IN')}</div>
+  <table><thead><tr>${head.map(h => `<th>${h}</th>`).join('')}</tr></thead><tbody>${rows}</tbody></table></body></html>`);
+  w.document.close();
+  setTimeout(() => w.print(), 900);
+}
+function downloadDonorsPDF() {
+  const y = $('donorYearFilter').value;
+  makePDF('દાતા અહેવાલ', y, ['ક્રમ','દાતાનું નામ','પ્રકાર','ગામ/શહેર','રકમ','તારીખ','રસીદ નં.'],
+    donorsData.filter(d => y === 'all' || d.year === y).map((d, i) => [i + 1, d.name, ty(d.type), d.village, '₹' + d.amount.toLocaleString('en-IN'), d.date, d.receiptNo || '—']));
+}
+function downloadExpensePDF() {
+  const y = $('expenseYearFilter').value;
+  makePDF('ખર્ચ અહેવાલ', y, ['ક્રમ','વર્ણન','શ્રેણી','રકમ','તારીખ','વાઉચર નં.'],
+    expensesData.filter(e => y === 'all' || e.year === y).map((e, i) => [i + 1, e.description, ty(e.category), '₹' + e.amount.toLocaleString('en-IN'), e.date, e.voucherNo || '—']));
+}
+
+/* ---------- PAGINATION ---------- */
+let currentDonorPage = 1;
+const donorsPerPage = 2; // Number of items per page
+let filteredDonorsCache = []; // Stores current filtered results for pagination
+
+let allDonorsData = []; // Global array
+
+// 1. Fetch JSON data when the page loads
+document.addEventListener("DOMContentLoaded", function() {
+  fetch('donors.json') // <-- Make sure this matches your actual JSON filename path
+    .then(response => {
+      if (!response.ok) throw new Error('Failed to load JSON file');
+      return response.json();
+    })
+    .then(data => {
+      allDonorsData = data;
+      
+      // Populate the Year Filter dropdown dynamically from your data
+      populateYearFilterDropdown();
+      
+      // Run filter to display the first page of data
+      filterDonors();
+    })
+    .catch(error => {
+      console.error("Error loading donors data:", error);
+      document.getElementById('donorsTableBody').innerHTML = 
+        `<tr><td colspan="7" class="text-center py-4 text-danger">ડેટા લોડ કરવામાં ભૂલ આવી છે.</td></tr>`;
+    });
+});
+
+// 2. Helper to automatically fill the Year dropdown options
+function populateYearFilterDropdown() {
+  const yearSelect = document.getElementById('donorYearFilter');
+  if (!yearSelect) return;
+
+  // Extract unique years from data
+  const years = [...new Set(allDonorsData.map(d => d.year || d.financialYear).filter(Boolean))];
+  
+  yearSelect.innerHTML = '<option value="all">બધા વર્ષ (All Years)</option>';
+  years.sort().reverse().forEach(year => {
+    yearSelect.innerHTML += `<option value="${year}">${year}</option>`;
+  });
+}
+
+function filterDonors() {
+  const yearFilter = document.getElementById('donorYearFilter').value;
+  const searchQuery = document.getElementById('donorSearch').value.toLowerCase().trim();
+
+  // Assuming 'allDonorsData' is your global array loaded from JSON
+  if (typeof allDonorsData === 'undefined') return;
+
+  // 1. Filter data based on year and search box
+  filteredDonorsCache = allDonorsData.filter(donor => {
+    const matchesYear = (yearFilter === 'all' || !yearFilter || donor.year === yearFilter || donor.financialYear === yearFilter);
+    const matchesSearch = !searchQuery || 
+      (donor.name && donor.name.toLowerCase().includes(searchQuery)) ||
+      (donor.city && donor.city.toLowerCase().includes(searchQuery)) ||
+      (donor.type && donor.type.toLowerCase().includes(searchQuery));
+    
+    return matchesYear && matchesSearch;
+  });
+
+  // 2. Update summary metrics cards
+  const totalCount = filteredDonorsCache.length;
+  const totalAmount = filteredDonorsCache.reduce((sum, donor) => sum + Number(donor.amount || 0), 0);
+  
+  document.getElementById('totalDonorsCount').innerText = totalCount;
+  document.getElementById('totalDonorsAmount').innerText = '₹' + totalAmount.toLocaleString('en-IN');
+
+  // 3. Reset to page 1 on search/filter change and render table & pagination
+  currentDonorPage = 1;
+  renderDonorTablePage();
+}
+
+function renderDonorTablePage() {
+  const tableBody = document.getElementById('donorsTableBody');
+  const countInfo = document.getElementById('donorCountInfo');
+  if (!tableBody) return;
+
+  tableBody.innerHTML = '';
+
+  if (filteredDonorsCache.length === 0) {
+    tableBody.innerHTML = `<tr><td colspan="7" class="text-center py-4 text-muted">કોઈ દાતા રેકોર્ડ મળ્યો નથી</td></tr>`;
+    if (countInfo) countInfo.innerText = `રેકોર્ડ 0 થી 0 બતાવી રહ્યા છીએ`;
+    document.getElementById('donorsPagination').innerHTML = '';
+    return;
+  }
+
+  // Calculate slice range for current page
+  const startIndex = (currentDonorPage - 1) * donorsPerPage;
+  const endIndex = Math.min(startIndex + donorsPerPage, filteredDonorsCache.length);
+  const paginatedData = filteredDonorsCache.slice(startIndex, endIndex);
+
+  // Render rows
+  paginatedData.forEach((donor, index) => {
+    const globalIndex = startIndex + index + 1;
+    const row = document.createElement('tr');
+    row.className = 'row-in';
+    row.style.animationDelay = `${index * 0.04}s`;
+    
+    row.innerHTML = `
+      <td class="ps-4">${globalIndex}</td>
+      <td class="fw-semibold">${donor.name || '-'}</td>
+      <td><span class="badge bg-light text-dark border">${donor.type || 'સામાન્ય દાન'}</span></td>
+      <td>${donor.city || '-'}</td>
+      <td class="fw-bold text-trust-primary">₹${Number(donor.amount || 0).toLocaleString('en-IN')}</td>
+      <td>${donor.date || '-'}</td>
+      <td class="pe-4 text-muted small">${donor.receiptNo || '-'}</td>
+    `;
+    tableBody.appendChild(row);
+  });
+
+  // Update info text
+  if (countInfo) {
+    countInfo.innerText = `કુલ ${filteredDonorsCache.length} માંથી રેકોર્ડ ${startIndex + 1} થી ${endIndex} બતાવી રહ્યા છીએ`;
+  }
+
+  renderDonorPaginationControls();
+}
+
+function renderDonorPaginationControls() {
+  const paginationContainer = document.getElementById('donorsPagination');
+  if (!paginationContainer) return;
+
+  paginationContainer.innerHTML = '';
+  const totalPages = Math.ceil(filteredDonorsCache.length / donorsPerPage);
+
+  if (totalPages <= 1) return; // Hide pagination if everything fits on one page
+
+  // Previous Page Button
+  const prevDisabled = currentDonorPage === 1 ? 'disabled opacity-50' : '';
+  
+  // Page Numbers List or Simple Prev/Next with indicator
+  paginationContainer.innerHTML = `
+    <button class="btn btn-sm btn-outline-primary rounded-pill px-3 fw-semibold ${prevDisabled}" onclick="changeDonorPage(${currentDonorPage - 1})">
+      <i class="fa-solid fa-chevron-left me-1"></i> પાછળ
+    </button>
+    <span class="small fw-semibold text-muted">પેજ ${currentDonorPage} / ${totalPages}</span>
+    <button class="btn btn-sm btn-outline-primary rounded-pill px-3 fw-semibold ${currentDonorPage === totalPages ? 'disabled opacity-50' : ''}" onclick="changeDonorPage(${currentDonorPage + 1})">
+      આગળ <i class="fa-solid fa-chevron-right ms-1"></i>
+    </button>
+  `;
+}
+
+function changeDonorPage(targetPage) {
+  const totalPages = Math.ceil(filteredDonorsCache.length / donorsPerPage);
+  if (targetPage < 1 || targetPage > totalPages) return;
+  currentDonorPage = targetPage;
+  renderDonorTablePage();
+  
+  // Smooth scroll back up to the top of the table report section
+  document.getElementById('donors-report').scrollIntoView({ behavior: 'smooth' });
+}
+
+/* ---------- Init ---------- */
+addEventListener('load', () => {
+  setTimeout(() => $('preloader').classList.add('done'), 500);
+  observeAll(); onScroll(); loadExternalData().then(startRotator);
+});
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
