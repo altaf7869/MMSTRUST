@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="gu"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>મેવાસ સાર્વજનિક ચેરિટેબલ ટ્રસ્ટ – ડેટા મેનેજમેન્ટ</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Gujarati:wght@400;600;700&display=swap" rel="stylesheet">
+<style>body{font-family:'Noto Sans Gujarati',sans-serif;background:#f4f7fb}.top{background:#0d3b66;color:#fff}.card{border:0;box-shadow:0 4px 18px rgba(13,59,102,.08);border-radius:1rem}.nav-pills .nav-link{color:#0d3b66}.nav-pills .active{background:#0d3b66}.btn-gold{background:#f0c350;color:#0d3b66;font-weight:600}.table-wrap{max-height:60vh;overflow:auto}</style></head>
+<body>
+<nav class="bg-white shadow-sm mb-3 sticky-top"><div class="container d-flex align-items-center justify-content-between gap-2 py-2">
+ <a class="d-flex align-items-center gap-2 text-decoration-none" href="admin.html" style="min-width:0">
+  <div class="d-flex align-items-center justify-content-center text-white rounded-circle flex-shrink-0" style="width:44px;height:44px;background:#0d3b66"><i class="fa-solid fa-hands-holding-child"></i></div>
+  <div style="min-width:0"><div class="fw-bold text-truncate" style="font-size:clamp(1rem,4.5vw,1.4rem);color:#212529">મેવાસ <span style="color:#0d3b66">મુસ્લિમ સમાજ</span></div><div class="small text-muted" style="line-height:1.1">ડેટા મેનેજમેન્ટ પેનલ</div></div></a>
+ <a href="index.html" target="_blank" class="btn btn-sm btn-outline-primary rounded-pill flex-shrink-0"><i class="fa-solid fa-globe"></i><span class="d-none d-sm-inline"> વેબસાઇટ જુઓ</span></a></div>
+ <div style="height:3px;background:linear-gradient(90deg,#0d3b66,#d4af37)"></div></nav>
+<div class="container pb-5">
+ <p class="small text-muted mb-3">દાતા અને ખર્ચ ઉમેરો / સુધારો / કાઢો, પછી JSON ડાઉનલોડ કરી વેબસાઇટ ફોલ્ડરમાં મૂકો. ડેટા ફક્ત આ બ્રાઉઝરમાં સેવ થાય છે.</p>
+ <ul class="nav nav-pills mb-3 gap-2"><li><button class="nav-link active" id="tab_donors">દાતાઓ</button></li><li><button class="nav-link" id="tab_expenses">ખર્ચ</button></li></ul>
+ <div class="card p-3 mb-3"><div class="row g-2 align-items-center">
+  <div class="col-md-6"><label class="small fw-semibold">હાલની JSON ફાઇલ ખોલો (donors.json / expenses.json)</label><input type="file" id="open" accept=".json" class="form-control form-control-sm"></div>
+  <div class="col-md-6"><label class="small fw-semibold">trust-data.json (PDF હેડર માટે, એક વાર)</label><input type="file" id="tinfo" accept=".json" class="form-control form-control-sm"></div>
+  <div class="col-12 text-md-end pt-2"><select id="pyear" class="form-select form-select-sm d-inline-block w-auto"></select> <button class="btn btn-outline-primary rounded-pill" id="pdf">📄 PDF ડાઉનલોડ</button> <label class="small me-2"><input type="checkbox" id="pub" checked> દાતા JSON: જાહેર વેબસાઇટ માટે (નામ ટૂંકા, રસીદ નં. દૂર)</label> <button class="btn btn-gold rounded-pill px-4" id="dl">⬇ JSON ડાઉનલોડ</button> <button class="btn btn-outline-secondary rounded-pill btn-sm" id="bk">💾 પૂરો બેકઅપ</button> <button class="btn btn-outline-danger rounded-pill btn-sm" id="clr">બધું સાફ કરો</button></div></div></div>
+ <div class="card p-3 mb-3"><h2 class="h6 mb-3" id="ftitle"></h2><form id="form" class="row g-2"></form></div>
+ <div class="card p-3"><div class="d-flex flex-wrap gap-2 justify-content-between align-items-center mb-2">
+  <div class="d-flex flex-wrap gap-2">
+   <input id="q" class="form-control form-control-sm" style="width:200px" placeholder="શોધો...">
+   <select id="ptype" class="form-select form-select-sm w-auto"></select>
+   <select id="sort" class="form-select form-select-sm w-auto"><option value="date-d">નવી તારીખ પહેલાં</option><option value="date-a">જૂની તારીખ પહેલાં</option><option value="amt-d">રકમ વધુ → ઓછી</option><option value="amt-a">રકમ ઓછી → વધુ</option><option value="name-a">નામ A → Z</option></select>
+   <select id="psize" class="form-select form-select-sm w-auto"><option>10</option><option>25</option><option>50</option><option>100</option></select></div>
+  <span class="small text-muted" id="stat"></span></div>
+  <div class="table-wrap"><table class="table table-sm table-hover align-middle mb-0"><thead class="table-dark" id="thead"></thead><tbody id="tbody"></tbody></table></div><div id="pager" class="d-flex flex-wrap justify-content-between align-items-center gap-2 mt-3"></div></div>
+</div>
+<datalist id="types"></datalist><datalist id="cats"></datalist>
+<script>
+const $=id=>document.getElementById(id);
+const C={
+ donors:{file:'donors.json',t:'નવો દાતા ઉમેરો',p:'REC',a:'receiptNo',f:[['name','દાતાનું નામ'],['type','પ્રકાર','text','types'],['village','ગામ / શહેર'],['amount','રકમ (₹)','number'],['date','તારીખ','date'],['receiptNo','રસીદ નં.'],['anonymous','ગુપ્ત દાતા (નામ છુપાવો)','check']]},
+ expenses:{file:'expenses.json',t:'નવો ખર્ચ ઉમેરો',p:'VCH',a:'voucherNo',f:[['description','વર્ણન'],['category','શ્રેણી','text','cats'],['amount','રકમ (₹)','number'],['date','તારીખ','date'],['voucherNo','વાઉચર નં.']]}};
+let pg=1,T='donors',E=-1,D={donors:[],expenses:[]};
+try{const s=JSON.parse(localStorage.getItem('trustAdmin')||'null');if(s)D=s}catch(e){}
+const save=()=>{try{localStorage.setItem('trustAdmin',JSON.stringify(D))}catch(e){}};
+const fy=d=>{const t=new Date(d),y=t.getFullYear()-(t.getMonth()<3?1:0);return y+'-'+(y+1)};
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function nextNo(){const c=C[T],y=fy($('f_date').value).slice(0,4),re=new RegExp('^'+c.p+'-'+y+'-(\\d+)$');let m=0;
+ D[T].forEach(r=>{const x=re.exec(r[c.a]||'');if(x)m=Math.max(m,+x[1])});return c.p+'-'+y+'-'+String(m+1).padStart(3,'0')}
+function lists(){const u=(a,k)=>[...new Set(a.map(r=>r[k]).filter(Boolean))];
+ $('types').innerHTML=[...new Set(['Corpus','General','CSR','Zakat','Medical','Education',...u(D.donors,'type')])].map(v=>`<option value="${esc(v)}">`).join('');
+ $('cats').innerHTML=u(D.expenses,'category').map(v=>`<option value="${esc(v)}">`).join('')}
+function reset(){E=-1;C[T].f.forEach(([k,,t])=>{$('f_'+k).value='';$('f_'+k).checked=false});$('f_date').value=new Date().toISOString().slice(0,10);
+ $('f_'+C[T].a).value=nextNo();$('sub').textContent='ઉમેરો';$('ftitle').textContent=C[T].t}
+function build(){$('form').innerHTML=C[T].f.map(([k,l,t,dl])=>t==='check'?`<div class="col-md-4 d-flex align-items-end"><div class="form-check mb-2"><input id="f_${k}" type="checkbox" class="form-check-input"><label class="form-check-label" for="f_${k}">${l}</label></div></div>`:`<div class="col-md-4"><label class="form-label small fw-semibold mb-1">${l}</label><input id="f_${k}" type="${t||'text'}" ${dl?`list="${dl}"`:''} ${t==='number'?'min="0" step="any"':''} class="form-control" required></div>`).join('')
+ +'<div class="col-12"><button class="btn btn-primary rounded-pill px-4" id="sub"></button> <button type="button" class="btn btn-light rounded-pill" id="cancel">રદ કરો</button></div>';
+ $('cancel').onclick=reset;$('f_date').onchange=()=>{if(E<0)$('f_'+C[T].a).value=nextNo()};reset();
+ $('thead').innerHTML='<tr><th>#</th>'+C[T].f.map(f=>`<th>${f[1]}</th>`).join('')+'<th></th></tr>'}
+function view(){const y=$('pyear').value||'all',q=$('q').value.toLowerCase(),tp=$('ptype').value||'all',k=T==='donors'?'type':'category',n0=C[T].f[0][0];
+ const a=D[T].map((r,i)=>[r,i]).filter(([r])=>(y==='all'||r.year===y)&&(tp==='all'||r[k]===tp)&&(!q||JSON.stringify(r).toLowerCase().includes(q)));
+ const S={'date-d':(x,z)=>z[0].date.localeCompare(x[0].date),'date-a':(x,z)=>x[0].date.localeCompare(z[0].date),'amt-d':(x,z)=>z[0].amount-x[0].amount,'amt-a':(x,z)=>x[0].amount-z[0].amount,'name-a':(x,z)=>String(x[0][n0]).localeCompare(String(z[0][n0]),'gu')};
+ return a.sort(S[$('sort').value])}
+function kinds(){const k=T==='donors'?'type':'category',v=$('ptype').value||'all',u=[...new Set(D[T].map(r=>r[k]).filter(Boolean))].sort();
+ $('ptype').innerHTML='<option value="all">બધા '+(T==='donors'?'પ્રકાર':'શ્રેણી')+'</option>'+u.map(x=>`<option>${esc(x)}</option>`).join('');$('ptype').value=u.includes(v)?v:'all'}
+function pager(pages){const w=new Set([1,pages,pg-1,pg,pg+1]);let h='',l=0;
+ [...w].filter(p=>p>=1&&p<=pages).sort((a,b)=>a-b).forEach(p=>{if(p-l>1)h+='<span class="px-1">…</span>';h+=`<button class="btn btn-sm ${p===pg?'btn-primary':'btn-outline-primary'}" onclick="go(${p})">${p}</button>`;l=p});
+ $('pager').innerHTML=`<span class="small text-muted">પેજ ${pg} / ${pages}</span><div class="d-flex flex-wrap gap-1 align-items-center"><button class="btn btn-sm btn-outline-secondary" onclick="go(${pg-1})" ${pg<2?'disabled':''}>‹</button>${h}<button class="btn btn-sm btn-outline-secondary" onclick="go(${pg+1})" ${pg>=pages?'disabled':''}>›</button>${pages>7?`<input type="number" min="1" max="${pages}" placeholder="જાઓ" class="form-control form-control-sm" style="width:76px" onchange="go(+this.value||1)">`:''}</div>`}
+function go(p){const pages=Math.ceil(view().length/(+$('psize').value))||1;pg=Math.min(Math.max(1,p),pages);draw()}
+function years(){const v=$('pyear').value||'all',ys=[...new Set(D[T].map(r=>r.year))].sort().reverse();
+ $('pyear').innerHTML='<option value="all">બધા વર્ષ</option>'+ys.map(y=>`<option>${y}</option>`).join('');$('pyear').value=ys.includes(v)?v:'all'}
+function draw(){lists();years();kinds();const rows=view(),sz=+$('psize').value,pages=Math.ceil(rows.length/sz)||1;pg=Math.min(pg,pages);const part=rows.slice((pg-1)*sz,pg*sz);
+ $('tbody').innerHTML=part.map(([r,i],n)=>`<tr><td>${(pg-1)*sz+n+1}</td>${C[T].f.map(([k,,t])=>`<td>${t==='number'?'₹'+Number(r[k]).toLocaleString('en-IN'):t==='check'?(r[k]?'✔':''):esc(r[k])}</td>`).join('')}
+ <td class="text-nowrap"><button class="btn btn-sm btn-outline-primary" onclick="edit(${i})">સુધારો</button> <button class="btn btn-sm btn-outline-danger" onclick="del(${i})">કાઢો</button></td></tr>`).join('')||'<tr><td colspan="9" class="text-center text-muted py-3">કોઈ રેકોર્ડ નથી</td></tr>';
+ $('stat').textContent=`દેખાય છે ${rows.length} / ${D[T].length} રેકોર્ડ · રકમ ₹${rows.reduce((a,[r])=>a+(+r.amount||0),0).toLocaleString('en-IN')}`;pager(pages)}
+function edit(i){E=i;C[T].f.forEach(([k,,t])=>{t==='check'?$('f_'+k).checked=!!D[T][i][k]:$('f_'+k).value=D[T][i][k]??''});$('sub').textContent='અપડેટ કરો';$('ftitle').textContent='રેકોર્ડ સુધારો';scrollTo({top:0,behavior:'smooth'})}
+function del(i){if(confirm('આ રેકોર્ડ કાઢી નાખવો છે?')){D[T].splice(i,1);save();draw()}}
+$('form').onsubmit=e=>{e.preventDefault();const r={};
+ C[T].f.forEach(([k,,t])=>{if(t==='check'){if($('f_'+k).checked)r[k]=true;return}const v=$('f_'+k).value.trim();r[k]=t==='number'?+v:v});r.year=fy(r.date);
+ E>=0?D[T][E]=r:D[T].push(r);D[T].sort((a,b)=>b.date.localeCompare(a.date));save();draw();reset()};
+$('q').oninput=()=>{pg=1;draw()};['pyear','ptype','sort','psize'].forEach(i=>$(i).onchange=()=>{pg=1;draw()});
+$('open').onchange=e=>{const f=e.target.files[0];if(!f)return;const rd=new FileReader();rd.onload=()=>{try{const a=JSON.parse(rd.result);if(!Array.isArray(a))throw 0;
+ if(D[T].length&&!confirm('હાલનો ડેટા બદલાઈ જશે. ચાલુ રાખવું છે?'))return;D[T]=a;save();draw();reset()}catch(x){alert('માન્ય JSON ફાઇલ નથી.')}};rd.readAsText(f);e.target.value=''};
+const short=n=>{const w=String(n).trim().split(/\s+/);if(w.length<2||/\.$/.test(w[w.length-1]))return n;const l=w[w.length-1];let g=l[0];try{g=[...new Intl.Segmenter('gu',{granularity:'grapheme'}).segment(l)][0].segment}catch(e){}return w[0]+' '+g+'.'};
+const pubRec=r=>{if(r.anonymous)return{name:'ગુપ્ત દાતા',type:r.type,village:'',amount:r.amount,date:r.date,year:r.year,anonymous:true};const{receiptNo,...o}=r;return{...o,name:short(r.name)}};
+const save2=(data,name)=>{const b=new Blob([JSON.stringify(data,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=name;a.click()};
+$('dl').onclick=()=>save2(T==='donors'&&$('pub').checked?D[T].map(pubRec):D[T],C[T].file);
+$('bk').onclick=()=>save2(D[T],C[T].file.replace('.json','-FULL-private.json'));
+$('clr').onclick=()=>{if(confirm('આ ટેબનો બધો ડેટા સાફ કરવો છે?')){D[T]=[];save();draw();reset()}};
+['donors','expenses'].forEach(k=>$('tab_'+k).onclick=()=>{T=k;pg=1;$('ptype').value='all';$('tab_donors').classList.toggle('active',k==='donors');$('tab_expenses').classList.toggle('active',k==='expenses');build();draw()});
+let TI={};try{TI=JSON.parse(localStorage.getItem('trustInfo')||'{}')}catch(e){}
+const setTI=t=>{TI={name:t.name||t.title,address:t.address,phone:t.phone,email:t.email,website:t.website,badge:t.badge,taxNote:t.taxNote,regNo:t.regNo,panNo:t.panNo,reg80G:t.reg80G,est:t.est,signatories:t.signatories};try{localStorage.setItem('trustInfo',JSON.stringify(TI))}catch(x){}};
+if(!TI.name)fetch('trust-data.json').then(r=>r.json()).then(setTI).catch(()=>{});
+$('tinfo').onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{const t=JSON.parse(r.result);TI={name:t.name||t.title,address:t.address,phone:t.phone,email:t.email,website:t.website,badge:t.badge,taxNote:t.taxNote,regNo:t.regNo,panNo:t.panNo,reg80G:t.reg80G,est:t.est,signatories:t.signatories};
+ try{localStorage.setItem('trustInfo',JSON.stringify(TI))}catch(x){}alert('ટ્રસ્ટ માહિતી લોડ થઈ.')}catch(x){alert('માન્ય JSON ફાઇલ નથી.')}};r.readAsText(f);e.target.value=''};
+$('pdf').onclick=()=>{const y=$('pyear').value,rows=view().map(x=>x[0]);if(!rows.length)return alert('કોઈ રેકોર્ડ નથી.');
+ const w=window.open('','_blank');if(!w)return alert('પોપ-અપ મંજૂર કરો.');
+ const rg=[TI.regNo&&'નોંધણી નં.: '+TI.regNo,TI.panNo&&'PAN: '+TI.panNo,TI.reg80G&&'80G: '+TI.reg80G,TI.est&&'સ્થાપના: '+TI.est].filter(Boolean),sgs=(TI.signatories&&TI.signatories.length)?TI.signatories:[{role:'ખજાનચી'},{role:'પ્રમુખ'}],
+ sgHtml='<div class="sg">'+sgs.map(g=>`<div><div class="im">${g.sign?`<img src="${esc(new URL(g.sign,location.href).href)}" alt="">`:''}</div><div class="ln"><b>${esc(g.name||'')}</b>${g.name?'<br>':''}${esc(g.role||'')}</div></div>`).join('')+'</div>',
+ num=(r,k)=>'₹'+Number(r[k]).toLocaleString('en-IN'),total=rows.reduce((a,r)=>a+(+r.amount||0),0),
+ head=['ક્રમ',...C[T].f.map(f=>f[1])].map(h=>`<th>${h}</th>`).join(''),
+ body=rows.map((r,i)=>`<tr><td>${i+1}</td>`+C[T].f.map(([k,,t])=>`<td>${t==='number'?num(r,k):t==='check'?(r[k]?'✔':''):esc(r[k])}</td>`).join('')+'</tr>').join('');
+ w.document.write(`<!DOCTYPE html><html lang="gu"><head><meta charset="UTF-8"><title>${T==='donors'?'દાતા અહેવાલ':'ખર્ચ અહેવાલ'}</title>
+ <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Gujarati:wght@400;700&display=swap" rel="stylesheet"><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet"><style>@page{margin:14mm}body{font-family:'Noto Sans Gujarati',sans-serif;color:#222;margin:0;padding:8px}
+ *{-webkit-print-color-adjust:exact;print-color-adjust:exact}.hd{display:flex;flex-direction:column;align-items:center;text-align:center;border-bottom:3px double #c9a227;padding-bottom:10px;margin-bottom:12px}.lg{width:46px;height:46px;border-radius:50%;background:#0d3b66;color:#fff;display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:6px}.hd h1{margin:0 0 4px;font-size:24px;color:#0d3b66}.hd .ct{font-size:12px;color:#555;line-height:1.6}
+ .rt{text-align:center;margin:10px 0 4px}.rt h2{margin:0;font-size:18px;color:#0d3b66}.rt div{font-size:12.5px;color:#444;margin-top:3px}
+ table{width:100%;border-collapse:collapse;margin-top:12px;font-size:12.5px}th{background:#0d3b66;color:#fff}th,td{border:1px solid #999;padding:6px 8px;text-align:left}tbody tr:nth-child(even){background:#f4f7fb}tr{page-break-inside:avoid}thead{display:table-header-group}.bdg{display:inline-block;background:#f0c350;color:#0d3b66;font-size:11px;font-weight:700;padding:2px 12px;border-radius:99px;margin-bottom:4px}.rg{font-size:12px;color:#0d3b66;font-weight:700;margin-bottom:2px}.tx{font-size:11px;color:#666;margin-top:3px}.sg{display:flex;justify-content:space-between;margin-top:36px;font-size:12px}.sg>div{min-width:160px;text-align:center}.sg .im{height:52px;display:flex;align-items:flex-end;justify-content:center}.sg img{max-height:50px;max-width:160px;object-fit:contain}.sg .ln{border-top:1px solid #444;padding-top:4px;line-height:1.5}.ft{text-align:center;font-size:11px;color:#666;margin-top:14px}</style></head><body>
+ <div class="hd"><div class="lg"><i class="fa-solid fa-hands-holding-child"></i></div><h1>${esc(TI.name||'મેવાસ સાર્વજનિક ચેરિટેબલ ટ્રસ્ટ')}</h1>${TI.badge?`<div class="bdg">${esc(TI.badge)}</div>`:''}${rg.length?`<div class="rg">${rg.map(esc).join(' &nbsp;|&nbsp; ')}</div>`:''}<div class="ct">${[TI.address,TI.phone,TI.email,TI.website].filter(Boolean).map(esc).join(' &nbsp;|&nbsp; ')}</div>${TI.taxNote?`<div class="tx">${esc(TI.taxNote)}</div>`:''}</div>
+ <div class="rt"><h2>${T==='donors'?'દાતા અહેવાલ':'ખર્ચ અહેવાલ'}</h2><div>નાણાકીય વર્ષ: ${y==='all'?'બધા વર્ષ':esc(y)} &nbsp;·&nbsp; તારીખ: ${new Date().toLocaleDateString('en-IN')}</div>
+ <div>કુલ રેકોર્ડ: ${rows.length} &nbsp;·&nbsp; કુલ રકમ: <b>₹${total.toLocaleString('en-IN')}</b></div></div>
+ <table><thead><tr>${head}</tr></thead><tbody>${body}</tbody></table>${sgHtml}<div class="ft">આ અહેવાલ કમ્પ્યુટર દ્વારા તૈયાર કરવામાં આવ્યો છે.</div></body></html>`);
+ w.document.close();setTimeout(()=>w.print(),1800)};
+build();draw();
+</script></body></html>

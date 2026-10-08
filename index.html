@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#0d3b66">
-<meta name="description" content="મેવાસ મુસ્લિમ સમાજ - પારદર્શક દાન અને ખર્ચ અહેવાલ">
+<meta name="description" content="મેવાસ સાર્વજનિક ચેરિટેબલ ટ્રસ્ટ - પારદર્શક દાન અને ખર્ચ અહેવાલ">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🤝</text></svg>">
-<title>મેવાસ મુસ્લિમ સમાજ - પારદર્શિતા અને અસર</title>
+<title>મેવાસ સાર્વજનિક ચેરિટેબલ ટ્રસ્ટ - પારદર્શિતા અને અસર</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&family=Noto+Sans+Gujarati:wght@300;400;500;600;700&family=Noto+Serif+Gujarati:wght@600;700&display=swap" rel="stylesheet">
@@ -226,6 +226,7 @@ body { padding-top: 80px; }
 @media print {
   #preloader, #progressBar, #toTop, #waBtn, .navbar { display: none !important; }
 }
+body.hide-receipt .col-receipt { display: none; }
 /* Stats band */
 .stats-band { position: relative; z-index: 5; margin-top: -52px; }
 .stat { background: #fff; border-radius: 1rem; padding: 1.25rem .75rem; box-shadow: 0 10px 30px rgba(13,59,102,.12); border-bottom: 3px solid var(--gold); height: 100%; }
@@ -285,7 +286,7 @@ section.py-5 { padding-top: clamp(2.5rem, 6vw, 5rem) !important; padding-bottom:
   <div class="container">
     <a class="navbar-brand d-flex align-items-center gap-2 fw-bold text-dark fs-4" href="#home">
       <div class="bg-trust-primary text-white p-2 rounded-circle d-flex align-items-center justify-content-center brand-icon" style="width:40px;height:40px"><i class="fa-solid fa-hands-holding-child"></i></div>
-      <span class="brand-text" data-c="text-trust-primary">મેવાસ મુસ્લિમ સમાજ</span>
+      <span class="brand-text" data-c="text-trust-primary">મેવાસ સાર્વજનિક ચેરિટેબલ ટ્રસ્ટ</span>
     </a>
     <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
     <div class="collapse navbar-collapse" id="navbarNav">
@@ -334,7 +335,7 @@ section.py-5 { padding-top: clamp(2.5rem, 6vw, 5rem) !important; padding-bottom:
     <div class="row align-items-center g-4 g-lg-5">
       <div class="col-lg-6 reveal" data-anim="left">
         <div class="position-relative">
-          <div class="img-fx shadow-lg"><img id="aboutImg" src="images/about.jpg" alt="મેવાસ મુસ્લિમ સમાજ" width="600" height="450" decoding="async"></div>
+          <div class="img-fx shadow-lg"><img id="aboutImg" src="images/about.jpg" alt="મેવાસ સાર્વજનિક ચેરિટેબલ ટ્રસ્ટ" width="600" height="450" decoding="async"></div>
           <div class="position-absolute bottom-0 end-0 bg-white p-4 rounded-4 shadow m-3 d-none d-sm-block border-start border-5 border-warning float-badge">
             <h3 class="fw-bold text-trust-primary mb-1"><span data-count="100">0</span>%</h3>
             <p id="aboutBadge" class="text-muted mb-0 small">જવાબદાર અને ઓડિટ થયેલ ફંડ</p>
@@ -344,7 +345,7 @@ section.py-5 { padding-top: clamp(2.5rem, 6vw, 5rem) !important; padding-bottom:
       <div class="col-lg-6 reveal" data-anim="right">
         <span id="aboutLabel" class="text-trust-primary fw-semibold text-uppercase small">અમારી પ્રતિબદ્ધતા</span>
         <h2 id="aboutTitle" class="display-5 fw-bold mb-4 mt-1">સંપૂર્ણ પારદર્શિતા દ્વારા વિશ્વાસનું નિર્માણ</h2>
-        <p id="aboutText" class="text-muted mb-4">મેવાસ મુસ્લિમ સમાજ સંપૂર્ણ સ્પષ્ટતા સાથે કામ કરે છે. દરેક દાન — કોર્પસ, ઝકાત, CSR કે સામાન્ય સહાય — ગામ-સ્તરના પ્રોજેક્ટ ફાળવણી સાથે નોંધાય છે અને જાહેરમાં પ્રકાશિત થાય છે.</p>
+        <p id="aboutText" class="text-muted mb-4">મેવાસ સાર્વજનિક ચેરિટેબલ ટ્રસ્ટ સંપૂર્ણ સ્પષ્ટતા સાથે કામ કરે છે. દરેક દાન — કોર્પસ, ઝકાત, CSR કે સામાન્ય સહાય — ગામ-સ્તરના પ્રોજેક્ટ ફાળવણી સાથે નોંધાય છે અને જાહેરમાં પ્રકાશિત થાય છે.</p>
         <div class="row g-4">
           <div class="col-md-6 reveal" data-anim="up"><div class="p-3 bg-light rounded-3 h-100 border-start border-3 border-trust-primary lift">
             <div class="text-trust-primary fs-4 mb-2"><i class="fa-solid fa-file-invoice-dollar"></i></div><h5 class="fw-bold">વર્ષ-વાર ખાતાવહી</h5><p class="small text-muted mb-0">નાણાકીય વર્ષ મુજબ દાન અને ખર્ચ તરત ફિલ્ટર કરો.</p></div></div>
@@ -397,7 +398,7 @@ section.py-5 { padding-top: clamp(2.5rem, 6vw, 5rem) !important; padding-bottom:
       <div class="table-hint"><i class="fa-solid fa-arrows-left-right me-1"></i>બધા કૉલમ જોવા ટેબલ સ્વાઇપ કરો</div>
       <div class="table-responsive">
         <table class="table table-hover align-middle mb-0 resp">
-          <thead class="table-dark text-uppercase small"><tr><th class="py-3 ps-4">ક્રમ</th><th>દાતાનું નામ</th><th>દાનનો પ્રકાર</th><th>ગામ / શહેર</th><th>રકમ (₹)</th><th>તારીખ</th><th class="pe-4">રસીદ નં.</th></tr></thead>
+          <thead class="table-dark text-uppercase small"><tr><th class="py-3 ps-4">ક્રમ</th><th>દાતાનું નામ</th><th>દાનનો પ્રકાર</th><th>ગામ / શહેર</th><th>રકમ (₹)</th><th>તારીખ</th><th class="col-receipt pe-4">રસીદ નં.</th></tr></thead>
           <tbody id="donorsTableBody"><tr><td colspan="7" class="text-center py-4 text-muted">દાતા રેકોર્ડ લોડ થઈ રહ્યા છે...</td></tr></tbody>
         </table>
       </div>
@@ -450,7 +451,7 @@ section.py-5 { padding-top: clamp(2.5rem, 6vw, 5rem) !important; padding-bottom:
   <div class="container py-lg-4">
     <div class="text-center mx-auto mb-5 reveal section-title" data-anim="up" style="max-width:700px">
       <span class="text-trust-primary fw-semibold text-uppercase small">આપણી પહેલને ટેકો આપો</span>
-      <h2 class="display-5 fw-bold mt-1">મેવાસ મુસ્લિમ સમાજને સહયોગ આપો અને QR કોડ ચુકવણી</h2>
+      <h2 class="display-5 fw-bold mt-1">મેવાસ સાર્વજનિક ચેરિટેબલ ટ્રસ્ટને સહયોગ આપો અને QR કોડ ચુકવણી</h2>
       <span class="bar"></span>
       <p class="text-muted mt-3">નીચે આપેલા QR કોડ અથવા સીધી બેંક વિગતો દ્વારા સુરક્ષિત યોગદાન આપો.</p>
     </div>
@@ -510,11 +511,11 @@ section.py-5 { padding-top: clamp(2.5rem, 6vw, 5rem) !important; padding-bottom:
 <footer class="bg-dark text-white pt-5 pb-4">
   <div class="container">
     <div class="row g-4 g-lg-5 mb-5">
-      <div class="col-lg-4 reveal" data-anim="up"><div class="fw-bold fs-4 mb-3 brand-text" data-c="text-warning">મેવાસ મુસ્લિમ સમાજ</div><p id="footAbout" class="opacity-75 small">પારદર્શિતા, સમુદાય સશક્તિકરણ અને ચકાસાયેલ સામાજિક કલ્યાણ માટે સમર્પિત નોંધાયેલ ચેરિટેબલ ટ્રસ્ટ.</p></div>
+      <div class="col-lg-4 reveal" data-anim="up"><div class="fw-bold fs-4 mb-3 brand-text" data-c="text-warning">મેવાસ સાર્વજનિક ચેરિટેબલ ટ્રસ્ટ</div><p id="footAbout" class="opacity-75 small">પારદર્શિતા, સમુદાય સશક્તિકરણ અને ચકાસાયેલ સામાજિક કલ્યાણ માટે સમર્પિત નોંધાયેલ ચેરિટેબલ ટ્રસ્ટ.</p></div>
       <div class="col-lg-2 col-md-4 reveal" data-anim="up"><h5 class="fw-bold mb-3">ઝડપી લિંક્સ</h5><ul class="list-unstyled d-flex flex-column gap-2 small">
         <li><a href="#home" class="text-light opacity-75 text-decoration-none">હોમ</a></li><li><a href="#about" class="text-light opacity-75 text-decoration-none">અમારા વિશે</a></li>
         <li><a href="#gallery" class="text-light opacity-75 text-decoration-none">ગેલેરી</a></li><li><a href="#future-plans" class="text-light opacity-75 text-decoration-none">ભવિષ્યની યોજનાઓ</a></li><li><a href="#donors-report" class="text-light opacity-75 text-decoration-none">દાતા અહેવાલ</a></li><li><a href="#expense-report" class="text-light opacity-75 text-decoration-none">ખર્ચ અહેવાલ</a></li></ul></div>
-      <div class="col-lg-3 col-md-4 reveal" data-anim="up"><h5 class="fw-bold mb-3">કરમુક્તિ</h5><p id="taxNote" class="opacity-75 small">મેવાસ મુસ્લિમ સમાજને આપેલા દાન લાગુ સ્થાનિક ટ્રસ્ટ નિયમો હેઠળ કરમુક્ત છે.</p></div>
+      <div class="col-lg-3 col-md-4 reveal" data-anim="up"><h5 class="fw-bold mb-3">કરમુક્તિ</h5><p id="taxNote" class="opacity-75 small">મેવાસ સાર્વજનિક ચેરિટેબલ ટ્રસ્ટને આપેલા દાન લાગુ સ્થાનિક ટ્રસ્ટ નિયમો હેઠળ કરમુક્ત છે.</p></div>
       <!-- <div class="col-lg-3 col-md-4 reveal" data-anim="up"><h5 class="fw-bold mb-3">સુરક્ષિત દાન</h5><p class="opacity-75 small mb-2">QR કોડ સ્કેન કરો અથવા સીધું બેંક ટ્રાન્સફર કરો.</p><button class="btn btn-outline-light btn-sm rounded-pill px-3 fw-semibold" data-bs-toggle="modal" data-bs-target="#donateModal">QR કોડ ખોલો</button></div> -->
        <div class="col-lg-3 col-md-4 reveal" data-anim="up">
   <h5 class="fw-bold mb-3">સુરક્ષિત દાન</h5>
@@ -523,14 +524,14 @@ section.py-5 { padding-top: clamp(2.5rem, 6vw, 5rem) !important; padding-bottom:
 </div>
     </div>
     <hr class="border-secondary opacity-25">
-    <div id="copyright" class="small opacity-75 text-center">&copy; 2026 મેવાસ મુસ્લિમ સમાજ. સર્વ હકો સ્વાધીન.</div>
+    <div id="copyright" class="small opacity-75 text-center">&copy; 2026 મેવાસ સાર્વજનિક ચેરિટેબલ ટ્રસ્ટ. સર્વ હકો સ્વાધીન.</div>
   </div>
 </footer>
 
 <!-- <div class="modal fade" id="donateModal" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
     <div class="modal-content rounded-4 border-0 shadow-lg">
-      <div class="modal-header border-0 pb-0"><h5 class="modal-title fw-bold">મેવાસ મુસ્લિમ સમાજને સહયોગ આપો અને QR કોડ ચુકવણી</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+      <div class="modal-header border-0 pb-0"><h5 class="modal-title fw-bold">મેવાસ સાર્વજનિક ચેરિટેબલ ટ્રસ્ટને સહયોગ આપો અને QR કોડ ચુકવણી</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
       <div class="modal-body p-4">
         <div class="row g-4 align-items-center">
           <div class="col-md-5"><div class="qr-container">
@@ -650,6 +651,18 @@ document.querySelectorAll('.navbar-nav .nav-link, .navbar-nav .btn').forEach(fun
 
 /* ---------- Data ---------- */
 let donorsData = [], expensesData = [], trustInfo = {};
+/* Donor privacy: change here, or add a "privacy" object in trust-data.json */
+const PRIVACY = { shortNames: true, hideReceipt: true, anonymousLabel: 'ગુપ્ત દાતા' };
+function shownName(d) {
+  if (d.anonymous) return PRIVACY.anonymousLabel;
+  const n = String(d.name || '').trim(), w = n.split(/\s+/);
+  if (!PRIVACY.shortNames || w.length < 2 || /\.$/.test(w[w.length - 1])) return n;
+  const l = w[w.length - 1]; let g = l[0];
+  try { g = [...new Intl.Segmenter('gu', { granularity: 'grapheme' }).segment(l)][0].segment; } catch (e) {}
+  return w[0] + ' ' + g + '.';
+}
+const shownVillage = d => d.anonymous ? '—' : (d.village || d.city || '');
+document.body.classList.toggle('hide-receipt', PRIVACY.hideReceipt);
 const TY = {Corpus:'કોર્પસ',General:'સામાન્ય',CSR:'CSR',Zakat:'ઝકાત',Medical:'તબીબી',Education:'શિક્ષણ',Infrastructure:'માળખાકીય સુવિધા',Administrative:'વહીવટી'};
 const ty = v => TY[v] || v;
 
@@ -693,6 +706,7 @@ function applyTrustData(t) {
   if (im.qr) $('qrImg').src = im.qr;
   if($('bankList'))$('bankList').innerHTML = (t.bank || []).map(r => `<li class="bank-row"><span><strong>${esc(r.label)}:</strong> ${esc(r.value)}</span><button type="button" class="btn btn-sm btn-light border rounded-pill copy-btn" data-v="${esc(r.value)}" onclick="copyText(this.dataset.v)" aria-label="કૉપિ કરો"><i class="fa-regular fa-copy"></i></button></li>`).join('');
   window.heroWords = t.heroWords;
+  Object.assign(PRIVACY, t.privacy || {}); document.body.classList.toggle('hide-receipt', PRIVACY.hideReceipt);
   const opts = '<option value="all">બધા વર્ષ</option>' + yearsList(t).map(y => `<option value="${esc(y)}"${y === t.defaultYear ? ' selected' : ''}>${esc(y)}</option>`).join('');
   if($('donorYearFilter'))$('donorYearFilter').innerHTML = opts;
   if($('expenseYearFilter'))$('expenseYearFilter').innerHTML = opts;
@@ -758,7 +772,7 @@ function filterDonors() {
   const y = $('donorYearFilter') ?$('donorYearFilter').value : 'all';
   const q = $('donorSearch') ?$('donorSearch').value.toLowerCase().trim() : '';
   const inYear = donorsData.filter(d => y === 'all' || d.year === y);
-  const rows = inYear.filter(d => !q || [d.name, d.village, d.city, d.type, ty(d.type), d.receiptNo].some(v => String(v ?? '').toLowerCase().includes(q))).sort(byDateDesc);
+  const rows = inYear.filter(d => !q || [shownName(d), shownVillage(d), d.type, ty(d.type), PRIVACY.hideReceipt ? '' : d.receiptNo].some(v => String(v ?? '').toLowerCase().includes(q))).sort(byDateDesc);
   state.donors = { ...state.donors, page: 1, rows };
   if($('totalDonorsCount')) animateValue($('totalDonorsCount'), rows.length);
   if($('totalDonorsAmount')) animateValue($('totalDonorsAmount'), sum(rows), '₹');
@@ -772,12 +786,12 @@ function drawDonors() {
   tbody.innerHTML = part.length ? part.map((d, i) => `
     <tr class="row-in" style="animation-delay:${i * .04}s">
       <td data-label="ક્રમ" class="ps-4 text-muted small">${s + i + 1}</td>
-      <td data-label="દાતા" class="fw-semibold text-dark">${esc(d.name)}</td>
+      <td data-label="દાતા" class="fw-semibold text-dark">${esc(shownName(d))}</td>
       <td data-label="પ્રકાર"><span class="badge ${badgeCls[d.type] || 'bg-light text-dark border'}">${esc(ty(d.type))}</span></td>
-      <td data-label="ગામ/શહેર"><i class="fa-solid fa-location-dot text-muted me-1 small"></i>${esc(d.village || d.city)}</td>
+      <td data-label="ગામ/શહેર"><i class="fa-solid fa-location-dot text-muted me-1 small"></i>${esc(shownVillage(d))}</td>
       <td data-label="રકમ" class="text-trust-primary fw-bold">${fmt(d.amount)}</td>
       <td data-label="તારીખ" class="text-muted small">${esc(d.date)}</td>
-      <td data-label="રસીદ નં." class="pe-4 text-muted small">${esc(d.receiptNo || '—')}</td>
+      <td data-label="રસીદ નં." class="col-receipt pe-4 text-muted small">${esc(d.receiptNo || '—')}</td>
     </tr>`).join('') : '<tr><td colspan="7" class="text-center py-4 text-muted">કોઈ દાતા રેકોર્ડ મળ્યો નથી.</td></tr>';
   pager('donors', rows.length);
 }
@@ -813,8 +827,8 @@ function drawExpenses() {
 function exportData(key, money) {
   const A = a => money ? fmt(a) : a;
   return key === 'donors'
-    ? { key, title: 'દાતા અહેવાલ', year: $('donorYearFilter') ?$('donorYearFilter').value : 'all', head: ['ક્રમ','દાતાનું નામ','પ્રકાર','ગામ/શહેર','રકમ','તારીખ','રસીદ નં.'],
-        rows: state.donors.rows.map((d, i) => [i + 1, d.name, ty(d.type), d.village || d.city || '', A(d.amount), d.date, d.receiptNo || '']) }
+    ? { key, title: 'દાતા અહેવાલ', year: $('donorYearFilter') ?$('donorYearFilter').value : 'all', head: ['ક્રમ','દાતાનું નામ','પ્રકાર','ગામ/શહેર','રકમ','તારીખ', ...(PRIVACY.hideReceipt ? [] : ['રસીદ નં.'])],
+        rows: state.donors.rows.map((d, i) => [i + 1, shownName(d), ty(d.type), shownVillage(d), A(d.amount), d.date, ...(PRIVACY.hideReceipt ? [] : [d.receiptNo || ''])]) }
     : { key, title: 'ખર્ચ અહેવાલ', year: $('expenseYearFilter') ?$('expenseYearFilter').value : 'all', head: ['ક્રમ','વર્ણન','શ્રેણી','રકમ','તારીખ','વાઉચર નં.'],
         rows: state.expenses.rows.map((e, i) => [i + 1, e.description, ty(e.category), A(e.amount), e.date, e.voucherNo || '']) };
 }
@@ -822,12 +836,18 @@ function makePDF({ title, year, head, rows, key }) {
   const w = window.open('', '_blank');
   if (!w) { showMessageBox('પોપ-અપ બ્લૉક થયું છે. કૃપા કરી મંજૂરી આપો.'); return; }
   const total = sum(state[key].rows);
+  const T = trustInfo, reg = [T.regNo && 'નોંધણી નં.: ' + T.regNo, T.panNo && 'PAN: ' + T.panNo, T.reg80G && '80G: ' + T.reg80G, T.est && 'સ્થાપના: ' + T.est].filter(Boolean), contact = [T.address, T.phone, T.email, T.website].filter(Boolean);
+  const sgs = (T.signatories && T.signatories.length) ? T.signatories : [{ role: 'ખજાનચી' }, { role: 'પ્રમુખ' }];
+  const sgHtml = '<div class="sg">' + sgs.map(g => `<div><div class="im">${g.sign ? `<img src="${esc(new URL(g.sign, location.href).href)}" alt="">` : ''}</div><div class="ln"><b>${esc(g.name || '')}</b>${g.name ? '<br>' : ''}${esc(g.role || '')}</div></div>`).join('') + '</div>';
   w.document.write(`<!DOCTYPE html><html lang="gu"><head><meta charset="UTF-8"><title>${esc(title)}</title>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Gujarati:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
   <style>
     @page{margin:14mm}
+    *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
     body{font-family:'Noto Sans Gujarati',sans-serif;color:#222;margin:0;padding:8px}
-    .hd{text-align:center;border-bottom:3px double #c9a227;padding-bottom:10px;margin-bottom:12px}
+    .hd{display:flex;flex-direction:column;align-items:center;text-align:center;border-bottom:3px double #c9a227;padding-bottom:10px;margin-bottom:12px}
+    .lg{width:46px;height:46px;border-radius:50%;background:#0d3b66;color:#fff;display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:6px}
     .hd h1{margin:0 0 4px;font-size:24px;color:#0d3b66}
     .hd .ct{font-size:12px;color:#555;line-height:1.6}
     .rt{text-align:center;margin:10px 0 4px}
@@ -839,16 +859,21 @@ function makePDF({ title, year, head, rows, key }) {
     tbody tr:nth-child(even){background:#f4f7fb}
     tr{page-break-inside:avoid}thead{display:table-header-group}
     .ft{text-align:center;font-size:11px;color:#666;margin-top:14px}
+    .bdg{display:inline-block;background:#f0c350;color:#0d3b66;font-size:11px;font-weight:700;padding:2px 12px;border-radius:99px;margin-bottom:4px}.rg{font-size:12px;color:#0d3b66;font-weight:700;margin-bottom:2px}.tx{font-size:11px;color:#666;margin-top:3px}.sg{display:flex;justify-content:space-between;margin-top:36px;font-size:12px}.sg>div{min-width:160px;text-align:center}.sg .im{height:52px;display:flex;align-items:flex-end;justify-content:center}.sg img{max-height:50px;max-width:160px;object-fit:contain}.sg .ln{border-top:1px solid #444;padding-top:4px;line-height:1.5}
   </style></head>
   <body>
-  <div class="hd"><h1>${esc(trustInfo.name || '')}</h1>
-    <div class="ct">${[trustInfo.address, trustInfo.phone, trustInfo.email].filter(Boolean).map(esc).join(' &nbsp;|&nbsp; ')}</div></div>
+  <div class="hd"><div class="lg"><i class="fa-solid fa-hands-holding-child"></i></div>
+    <h1>${esc(T.name || '')}</h1>
+    ${T.badge ? `<div class="bdg">${esc(T.badge)}</div>` : ''}
+    ${reg.length ? `<div class="rg">${reg.map(esc).join(' &nbsp;|&nbsp; ')}</div>` : ''}
+    <div class="ct">${contact.map(esc).join(' &nbsp;|&nbsp; ')}</div>
+    ${T.taxNote ? `<div class="tx">${esc(T.taxNote)}</div>` : ''}</div>
   <div class="rt"><h2>${esc(title)}</h2>
     <div>નાણાકીય વર્ષ: ${year === 'all' ? 'બધા વર્ષ' : esc(year)} &nbsp;·&nbsp; તારીખ: ${new Date().toLocaleDateString('en-IN')}</div>
     <div>કુલ રેકોર્ડ: ${rows.length} &nbsp;·&nbsp; કુલ રકમ: <b>${fmt(total)}</b></div></div>
   <table><thead><tr>${head.map(h => `<th>${h}</th>`).join('')}</tr></thead><tbody>${rows.map(r => '<tr>' + r.map(c => `<td>${esc(c)}</td>`).join('') + '</tr>').join('')}</tbody></table>
-  <div class="ft">આ અહેવાલ કમ્પ્યુટર દ્વારા તૈયાર કરવામાં આવ્યો છે.</div></body></html>`);
-  w.document.close(); setTimeout(() => w.print(), 900);
+  ${sgHtml}<div class="ft">આ અહેવાલ કમ્પ્યુટર દ્વારા તૈયાર કરવામાં આવ્યો છે.</div></body></html>`);
+  w.document.close(); setTimeout(() => w.print(), 1500);
 }
 const downloadDonorsPDF = () => makePDF(exportData('donors', true));
 const downloadExpensePDF = () => makePDF(exportData('expenses', true));
